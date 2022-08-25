@@ -13,7 +13,7 @@ export const GlobalStyles = createGlobalStyle`
 
  body {
     font-size: 1.6rem;
-    background: ${props => props.theme.background};
+    background: ${(props) => props.theme.background};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
  }

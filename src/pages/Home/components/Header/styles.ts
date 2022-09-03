@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
-  /* padding-top: 9.4rem; */
+  padding: 9.4rem 0;
   display: flex;
   gap: 5.6rem;
   background: radial-gradient(

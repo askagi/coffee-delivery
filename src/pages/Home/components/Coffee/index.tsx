@@ -13,7 +13,7 @@ import {
   Quantity,
   Title,
 } from './styles'
-import expressoTradicional from '../../../../assets/expresso-tradicional.png'
+import expressoTradicional from '../../../../assets/coffee01.png'
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
 export function Coffee() {
   return (

@@ -1,11 +1,10 @@
 import styled from 'styled-components'
 import { CardBase } from '../../styles'
 
-export const FormContainer = styled(CardBase)`
+export const PaymentMethodContainer = styled(CardBase)`
   width: 100%;
-  margin-bottom: 1.2rem;
 `
-export const HeaderForm = styled.div`
+export const Header = styled.div`
   margin-bottom: 3.2rem;
 
   div {
@@ -47,41 +46,41 @@ export const HeaderForm = styled.div`
     }
   }
 `
-export const BodyForm = styled.div`
+export const Body = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 1.6rem;
+  gap: 1.2rem;
+`
+export const ButtonCard = styled.button`
+  display: flex;
+  /* align-items: center; */
+  border: none;
+  gap: 1.2rem;
+  padding: 1.6rem;
+  background: ${(props) => props.theme['base-button']};
+  border-radius: 6px;
 
-  div {
-    display: flex;
-    gap: 1.2rem;
+  svg {
+    color: ${(props) => props.theme.purple};
   }
-`
 
-export const InputCep = styled.input`
-  width: 35%;
-`
+  span {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 160%;
+    text-transform: uppercase;
+    color: ${(props) => props.theme['base-text']};
+  }
+  transition: color 0.2s, background 0.2s;
 
-export const InputStreet = styled.input`
-  width: 56rem;
-`
+  &:hover {
+    color: ${(props) => props.theme['base-subtitle']};
+    background: ${(props) => props.theme['base-hover']};
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+  }
 
-export const InputNumber = styled.input`
-  flex: 1;
-`
-
-export const InputComplement = styled.input`
-  flex: 1;
-`
-
-export const InputDistrict = styled.input`
-  width: 20rem;
-`
-
-export const InputCity = styled.input`
-  width: 27.6rem;
-`
-
-export const InputState = styled.input`
-  width: 6rem;
+  &:focus {
+    outline: 1px solid ${(props) => props.theme.purple};
+  }
 `

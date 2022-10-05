@@ -69,7 +69,7 @@ export const IconListContainer = styled.div`
   border-radius: 50%;
 
   svg {
-    color: ${(props) => props.theme.while};
+    color: ${(props) => props.theme.white};
   }
 `
 

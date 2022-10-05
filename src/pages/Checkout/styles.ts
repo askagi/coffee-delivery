@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 
+export const Header = styled.header`
+  display: flex;
+  gap: 50.5rem;
+`
+
 export const Title = styled.h2`
   font-family: 'Baloo 2', cursive;
   font-weight: 700;

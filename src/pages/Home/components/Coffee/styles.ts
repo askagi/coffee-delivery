@@ -142,7 +142,7 @@ export const BuyButton = styled.button`
   background-color: ${(props) => props.theme['purple-dark']};
   cursor: pointer;
 
-  color: ${(props) => props.theme.while};
+  color: ${(props) => props.theme.white};
   transition: background 0.2s;
 
   &:hover {

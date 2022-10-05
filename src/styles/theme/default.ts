@@ -17,6 +17,6 @@ export const defaultTheme = {
   'base-button': '#E6E5E5',
   'base-hover': '#D7D5D5',
 
-  while: '#FFFFFF',
+  white: '#FFFFFF',
   background: '#FAFAFA',
 }

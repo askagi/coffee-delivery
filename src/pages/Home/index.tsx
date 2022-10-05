@@ -6,6 +6,7 @@ import { coffeesData } from '../../database/coffees'
 
 export function Home() {
   const [coffees, setCoffees] = useState(coffeesData)
+
   return (
     <HomeContainer>
       <Header />
@@ -13,7 +14,7 @@ export function Home() {
         <Title>Nossos cafés</Title>
         <ProductsContainer>
           {coffees.map((coffee) => (
-            <Coffee key={coffee.id} />
+            <Coffee key={coffee.id} coffee={coffee} />
           ))}
         </ProductsContainer>
       </main>

@@ -1,3 +1,4 @@
+import { Minus, Plus, ShoppingCart } from 'phosphor-react'
 import {
   Actions,
   Body,
@@ -13,30 +14,38 @@ import {
   Quantity,
   Title,
 } from './styles'
-import expressoTradicional from '../../../../assets/coffee01.png'
-import { Minus, Plus, ShoppingCart } from 'phosphor-react'
-export function Coffee() {
+
+// interface CoffeeProps {
+//   id: number
+//   image: string
+//   tags: []
+//   name: string
+//   description: string
+//   price: number
+// }
+
+export function Coffee({ coffee }) {
   return (
     <Card>
       <Header>
-        <img src={expressoTradicional} alt="" />
+        <img src={coffee.image} alt="" />
         <CategoryContainer>
-          <span>especial</span>
-          <span>alcoólico</span>
-          <span>gelado</span>
+          {coffee.tags.map((tag: string) => (
+            <span key={tag}>{tag}</span>
+          ))}
         </CategoryContainer>
       </Header>
       <Body>
-        <Title>Cubano</Title>
-        <Description>
-          Drink gelado de café expresso com rum, creme de leite e hortelã
-        </Description>
+        <Title>{coffee.name}</Title>
+        <Description>{coffee.description}</Description>
       </Body>
 
       <Footer>
         <PriceContainer>
           <Prefix>R$</Prefix>
-          <Price>9,90</Price>
+          <Price>
+            {coffee.price.toLocaleString('pt-br', { minimumFractionDigits: 2 })}
+          </Price>
         </PriceContainer>
 
         <Actions>

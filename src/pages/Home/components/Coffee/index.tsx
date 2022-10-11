@@ -15,16 +15,20 @@ import {
   Title,
 } from './styles'
 
-// interface CoffeeProps {
-//   id: number
-//   image: string
-//   tags: []
-//   name: string
-//   description: string
-//   price: number
-// }
+interface CoffeeProps {
+  id: number
+  image: string
+  tags: string[]
+  name: string
+  description: string
+  price: number
+}
 
-export function Coffee({ coffee }) {
+interface Props {
+  coffee: CoffeeProps
+  setCoffees?: () => void
+}
+export function Coffee({ coffee }: Props) {
   return (
     <Card>
       <Header>

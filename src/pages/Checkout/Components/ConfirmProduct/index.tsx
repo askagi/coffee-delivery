@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { coffeesData } from '../../../../database/coffees'
 import { CoffeeItem } from '../CoffeeItem'
 import {
@@ -11,6 +12,7 @@ import {
 } from './styled'
 
 export function ConfirmProduct() {
+  const navegate = useNavigate()
   return (
     <ConfirmProductContainer>
       <CoffeeItem key={coffeesData[0].id} coffee={coffeesData[0]} />
@@ -31,7 +33,9 @@ export function ConfirmProduct() {
             <span>R$ 33,20</span>
           </TotalOrder>
         </SummaryContainer>
-        <ButtonConfirmOrder>confirmar pedido</ButtonConfirmOrder>
+        <ButtonConfirmOrder onClick={() => navegate('/success')}>
+          confirmar pedido
+        </ButtonConfirmOrder>
       </Summary>
     </ConfirmProductContainer>
   )

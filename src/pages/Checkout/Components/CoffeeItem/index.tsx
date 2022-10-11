@@ -11,13 +11,16 @@ import {
   Quantity,
 } from './styles'
 
-// interface CoffeeProps {
-//   image: string
-//   name: string
-//   price: number
-// }
+interface CoffeeProps {
+  image: string
+  name: string
+  price: number
+}
+interface Props {
+  coffee: CoffeeProps
+}
 
-export function CoffeeItem({ coffee }) {
+export function CoffeeItem({ coffee }: Props) {
   return (
     <Coffee>
       <BodyCoffeeItem>

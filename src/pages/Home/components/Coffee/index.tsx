@@ -1,8 +1,10 @@
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
+import { useContext, useState } from 'react'
+import { CoffeesContext, CoffeeType } from '../../../../Contexts/CoffeesContext'
 import {
   Actions,
+  AddCartButton,
   Body,
-  BuyButton,
   Card,
   CategoryContainer,
   Description,
@@ -15,24 +17,29 @@ import {
   Title,
 } from './styles'
 
-interface CoffeeProps {
-  id: number
-  image: string
-  tags: string[]
-  name: string
-  description: string
-  price: number
-}
-
 interface Props {
-  coffee: CoffeeProps
-  setCoffees?: () => void
+  coffee: CoffeeType
 }
 export function Coffee({ coffee }: Props) {
+  const { updateCart } = useContext(CoffeesContext)
+  const [quantity, setQuantity] = useState(1)
+
+  function addQuantity() {
+    setQuantity((state) => state + 1)
+  }
+
+  function decreaseQuantity() {
+    setQuantity((state) => (state > 1 ? state - 1 : state))
+  }
+
+  function handleCart() {
+    updateCart(coffee.id, quantity)
+  }
+
   return (
     <Card>
       <Header>
-        <img src={coffee.image} alt="" />
+        <img src={coffee.image} alt={coffee.name} />
         <CategoryContainer>
           {coffee.tags.map((tag: string) => (
             <span key={tag}>{tag}</span>
@@ -48,19 +55,31 @@ export function Coffee({ coffee }: Props) {
         <PriceContainer>
           <Prefix>R$</Prefix>
           <Price>
-            {coffee.price.toLocaleString('pt-br', { minimumFractionDigits: 2 })}
+            {(coffee.price * quantity).toLocaleString('pt-br', {
+              minimumFractionDigits: 2,
+            })}
           </Price>
         </PriceContainer>
 
         <Actions>
           <Quantity>
-            <Minus className="minus" size={16} weight="bold" />
-            <span>1</span>
-            <Plus className="plus" size={16} weight="bold" />
+            <Minus
+              className="minus"
+              size={16}
+              weight="bold"
+              onClick={decreaseQuantity}
+            />
+            <span>{quantity}</span>
+            <Plus
+              className="plus"
+              size={16}
+              weight="bold"
+              onClick={addQuantity}
+            />
           </Quantity>
-          <BuyButton>
+          <AddCartButton onClick={handleCart}>
             <ShoppingCart size={22} weight="fill" />
-          </BuyButton>
+          </AddCartButton>
         </Actions>
       </Footer>
     </Card>

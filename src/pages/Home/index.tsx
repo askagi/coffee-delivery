@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useContext } from 'react'
+import { CoffeesContext } from '../../Contexts/CoffeesContext'
 import { Coffee } from './components/Coffee'
 import { Header } from './components/Header'
 import { HomeContainer, ProductsContainer, Title } from './styles'
-import { coffeesData } from '../../database/coffees'
 
 export function Home() {
-  const [coffees, setCoffees] = useState(coffeesData)
+  const { coffees } = useContext(CoffeesContext)
 
   return (
     <HomeContainer>

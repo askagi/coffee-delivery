@@ -131,7 +131,7 @@ export const Quantity = styled.div`
   }
 `
 
-export const BuyButton = styled.button`
+export const AddCartButton = styled.button`
   all: unset;
   display: flex;
   align-items: center;

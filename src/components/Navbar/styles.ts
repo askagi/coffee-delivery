@@ -13,6 +13,7 @@ export const ItemsRight = styled.div`
   gap: 1.2rem;
 
   a {
+    position: relative;
     display: flex;
     align-items: center;
     background: ${(props) => props.theme['yellow-light']};
@@ -48,5 +49,26 @@ export const LocationInfo = styled.div`
   line-height: 130%;
   svg {
     color: ${(props) => props.theme.purple};
+  }
+`
+
+export const ItemIndicator = styled.div`
+  width: 2rem;
+  height: 2rem;
+  background-color: ${(props) => props.theme['yellow-dark']};
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: -0.8rem;
+  right: -0.8rem;
+
+  span {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: ${(props) => props.theme.white};
   }
 `

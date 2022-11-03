@@ -1,5 +1,7 @@
+import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { coffeesData } from '../../../../database/coffees'
+import { CoffeesContext } from '../../../../Contexts/CoffeesContext'
+import { priceFormatter } from '../../../../utils/formatter'
 import { CoffeeItem } from '../CoffeeItem'
 import {
   ButtonConfirmOrder,
@@ -13,27 +15,34 @@ import {
 
 export function ConfirmProduct() {
   const navegate = useNavigate()
+  const { cart, payable } = useContext(CoffeesContext)
+
+  const deliveryValue = 5
+
   return (
     <ConfirmProductContainer>
-      <CoffeeItem key={coffeesData[0].id} coffee={coffeesData[0]} />
-      <CoffeeItem key={coffeesData[5].id} coffee={coffeesData[5]} />
+      {cart.map((item) => (
+        <CoffeeItem key={item.id} coffee={item} />
+      ))}
 
       <Summary>
         <SummaryContainer>
           <TotalItem>
             <span>Total de itens</span>
-            <span>R$ 29,70</span>
+            <span>{priceFormatter.format(payable)}</span>
           </TotalItem>
           <Delivery>
             <span>Entrega</span>
-            <span>R$ 3,50</span>
+            <span>{priceFormatter.format(deliveryValue)}</span>
           </Delivery>
           <TotalOrder>
             <span>Total</span>
-            <span>R$ 33,20</span>
+            <span>
+              {cart.length && priceFormatter.format(payable + deliveryValue)}
+            </span>
           </TotalOrder>
         </SummaryContainer>
-        <ButtonConfirmOrder onClick={() => navegate('/success')}>
+        <ButtonConfirmOrder type="submit" onClick={() => navegate('/success')}>
           confirmar pedido
         </ButtonConfirmOrder>
       </Summary>

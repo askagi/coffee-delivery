@@ -48,7 +48,10 @@ export function CoffeeItem({ coffee }: Props) {
   return (
     <Coffee>
       <BodyCoffeeItem>
-        <img src={coffees[coffee.id - 1].image} alt={coffees[coffee.id].name} />
+        <img
+          src={coffees[coffee.id - 1].image}
+          alt={coffees[coffee.id - 1].name}
+        />
         <div>
           <CoffeeName>{coffees[coffee.id - 1].name}</CoffeeName>
           <Actions>

@@ -43,6 +43,7 @@ export const GlobalStyles = createGlobalStyle`
   }
  }
 
+
  /* 
     font-family: 'Baloo 2', cursive;
     font-family: 'Roboto', sans-serif; 

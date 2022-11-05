@@ -8,12 +8,14 @@ import {
   ItemsRight,
   LocationInfo,
   NavbarContainer,
+  // PositionStatic,
 } from './styles'
 export function Navbar() {
   const { cart } = useContext(CoffeesContext)
   return (
+    // <PositionStatic>
     <NavbarContainer>
-      <NavLink to="/" title="Home">
+      <NavLink to="/" title="Home" className="noneBoxShadow">
         <img src={logoNavbar} alt="logo da coffee delivery" />
       </NavLink>
 
@@ -35,5 +37,6 @@ export function Navbar() {
         </NavLink>
       </ItemsRight>
     </NavbarContainer>
+    // </PositionStatic>
   )
 }

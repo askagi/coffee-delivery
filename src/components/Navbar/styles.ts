@@ -1,10 +1,23 @@
 import styled from 'styled-components'
 
+// export const PositionStatic = styled.div`
+//   /* margin: 12rem 0; */
+//   position: sticky;
+//   top: 0;
+//   z-index: 10;
+//   background-color: ${({ theme }) => theme.background};
+/* left: 10rem;
+right: 10rem; */
+// `
 export const NavbarContainer = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 3.2rem 0;
+  .noneBoxShadow {
+    outline: 0;
+    box-shadow: none;
+  }
 `
 
 export const ItemsRight = styled.div`

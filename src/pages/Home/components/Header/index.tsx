@@ -1,4 +1,6 @@
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
+import { useEffect } from 'react'
+import ScrollReveal from 'scrollreveal'
 import introImg from '../../../../assets/intro.png'
 import {
   GrayCircle,
@@ -15,9 +17,26 @@ import {
 } from './styles'
 
 export function Header() {
+  useEffect(() => {
+    const sr = ScrollReveal()
+    sr.reveal('.itemLeft', {
+      duration: 1000,
+      delay: 400,
+      origin: 'left',
+      distance: '30px',
+      reset: true,
+    })
+    sr.reveal('.itemRight', {
+      duration: 3000,
+      delay: 1000,
+      origin: 'right',
+      distance: '100px',
+      reset: true,
+    })
+  }, [])
   return (
     <HeaderContainer>
-      <LeftContent>
+      <LeftContent className="itemLeft">
         <Title>Encontre o café perfeito para qualquer hora do dia</Title>
         <Subtitle>
           Com o Coffee Delivery você recebe seu café onde estiver, a qualquer
@@ -56,7 +75,7 @@ export function Header() {
         </ListGroup>
       </LeftContent>
 
-      <div>
+      <div className="itemRight">
         <img src={introImg} alt="Copo branco" />
       </div>
     </HeaderContainer>

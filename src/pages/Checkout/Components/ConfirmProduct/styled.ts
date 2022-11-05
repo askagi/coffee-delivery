@@ -53,10 +53,23 @@ export const ButtonConfirmOrder = styled.button`
   color: ${(props) => props.theme.white};
   font-stretch: 100;
 
-  &:hover {
+  &:not(:disabled):hover {
     background: ${(props) => props.theme['yellow-dark']};
     cursor: pointer;
     transition: background 0.2s;
   }
   transition: background 0.2s;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+`
+export const EmpityCartMessage = styled.span`
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  padding: 4rem 0 8rem 0;
+  font: 400 2.5rem Roboto, sans-serif;
+  color: ${(props) => props.theme['base-text']};
 `

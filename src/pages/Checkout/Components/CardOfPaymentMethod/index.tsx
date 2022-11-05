@@ -1,7 +1,16 @@
 import { Bank, CreditCard, CurrencyDollar, Money } from 'phosphor-react'
-import { Body, ButtonCard, Header, PaymentMethodContainer } from './styles'
+import { useContext } from 'react'
+import { CoffeesContext } from '../../../../Contexts/CoffeesContext'
+import {
+  ButtonCard,
+  FormOfPayment,
+  Header,
+  PaymentMethodContainer,
+} from './styles'
 
 export function PaymentMethod() {
+  const { formPayment, handleFormPayment } = useContext(CoffeesContext)
+
   return (
     <PaymentMethodContainer>
       <Header>
@@ -15,22 +24,27 @@ export function PaymentMethod() {
           </div>
         </div>
       </Header>
-      <Body>
-        <ButtonCard type="button">
+      <FormOfPayment
+        name="formOfPayment"
+        onValueChange={handleFormPayment}
+        defaultValue={formPayment.formOfPayment}
+        value={formPayment.formOfPayment}
+      >
+        <ButtonCard value="credito">
           <CreditCard size={16} />
           <span>cartão de crédito</span>
         </ButtonCard>
 
-        <ButtonCard type="button">
+        <ButtonCard value="debito">
           <Bank size={16} />
-          <span>cartão de crédito</span>
+          <span>cartão de débito</span>
         </ButtonCard>
 
-        <ButtonCard type="button">
+        <ButtonCard value="dinheiro">
           <Money size={16} />
-          <span>cartão de crédito</span>
+          <span>dinheiro</span>
         </ButtonCard>
-      </Body>
+      </FormOfPayment>
     </PaymentMethodContainer>
   )
 }

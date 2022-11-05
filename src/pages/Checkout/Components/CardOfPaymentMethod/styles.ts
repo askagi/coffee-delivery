@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { CardBase } from '../../styles'
+import * as RadioGroup from '@radix-ui/react-radio-group'
 
 export const PaymentMethodContainer = styled(CardBase)`
   width: 100%;
@@ -46,14 +47,15 @@ export const Header = styled.div`
     }
   }
 `
-export const Body = styled.div`
-  display: flex;
+export const FormOfPayment = styled(RadioGroup.Root)`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.2rem;
 `
-export const ButtonCard = styled.button`
+export const ButtonCard = styled(RadioGroup.Item)`
   display: flex;
-  /* align-items: center; */
   border: none;
+  box-shadow: none;
   gap: 1.2rem;
   padding: 1.6rem;
   background: ${(props) => props.theme['base-button']};
@@ -70,6 +72,7 @@ export const ButtonCard = styled.button`
     line-height: 160%;
     text-transform: uppercase;
     color: ${(props) => props.theme['base-text']};
+    text-transform: uppercase;
   }
   transition: color 0.2s, background 0.2s;
 
@@ -80,7 +83,7 @@ export const ButtonCard = styled.button`
     transition: color 0.2s, background 0.2s;
   }
 
-  &:focus {
+  &[data-state='checked'] {
     outline: 1px solid ${(props) => props.theme.purple};
   }
 `

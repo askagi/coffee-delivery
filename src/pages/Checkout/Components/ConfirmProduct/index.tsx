@@ -1,5 +1,4 @@
 import { useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { CoffeesContext } from '../../../../Contexts/CoffeesContext'
 import { priceFormatter } from '../../../../utils/formatter'
 import { CoffeeItem } from '../CoffeeItem'
@@ -7,6 +6,7 @@ import {
   ButtonConfirmOrder,
   ConfirmProductContainer,
   Delivery,
+  EmpityCartMessage,
   Summary,
   SummaryContainer,
   TotalItem,
@@ -14,35 +14,40 @@ import {
 } from './styled'
 
 export function ConfirmProduct() {
-  const navegate = useNavigate()
   const { cart, payable } = useContext(CoffeesContext)
 
   const deliveryValue = 5
 
   return (
     <ConfirmProductContainer>
-      {cart.map((item) => (
-        <CoffeeItem key={item.id} coffee={item} />
-      ))}
+      {cart.length ? (
+        cart.map((item) => <CoffeeItem key={item.id} coffee={item} />)
+      ) : (
+        <EmpityCartMessage>Seu carrinho está vazio</EmpityCartMessage>
+      )}
 
       <Summary>
         <SummaryContainer>
           <TotalItem>
             <span>Total de itens</span>
-            <span>{priceFormatter.format(payable)}</span>
+            <span>{cart.length ? priceFormatter.format(payable) : '0,00'}</span>
           </TotalItem>
           <Delivery>
             <span>Entrega</span>
-            <span>{priceFormatter.format(deliveryValue)}</span>
+            <span>
+              {cart.length ? priceFormatter.format(deliveryValue) : '0,00'}
+            </span>
           </Delivery>
           <TotalOrder>
             <span>Total</span>
             <span>
-              {cart.length && priceFormatter.format(payable + deliveryValue)}
+              {cart.length
+                ? priceFormatter.format(payable + deliveryValue)
+                : '0,00'}
             </span>
           </TotalOrder>
         </SummaryContainer>
-        <ButtonConfirmOrder type="submit" onClick={() => navegate('/success')}>
+        <ButtonConfirmOrder type="submit" disabled={!cart.length}>
           confirmar pedido
         </ButtonConfirmOrder>
       </Summary>

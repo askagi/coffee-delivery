@@ -1,6 +1,7 @@
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
 import { useContext, useState } from 'react'
 import { CoffeesContext, CoffeeType } from '../../../../Contexts/CoffeesContext'
+
 import {
   Actions,
   AddCartButton,

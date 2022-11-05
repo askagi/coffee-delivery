@@ -84,4 +84,5 @@ export const InputCity = styled.input`
 
 export const InputState = styled.input`
   width: 6rem;
+  text-transform: uppercase;
 `

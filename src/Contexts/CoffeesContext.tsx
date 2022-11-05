@@ -1,5 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from 'react'
 import { api } from '../services/api'
+import { viaCep } from '../services/viaCep'
+import { formatCurrentCep } from '../utils/formatter'
 
 interface CoffeesContextProviderProps {
   children: ReactNode
@@ -20,12 +22,32 @@ interface CartItems {
   quantity: number
 }
 
+interface FormAddressType {
+  cep: string
+  street: string
+  number: string
+  complement: string
+  district: string
+  city: string
+  state: string
+}
+
+interface FormPaymentType {
+  formOfPayment: 'credito' | 'debito' | 'dinheiro'
+}
+
 interface CoffeesContextType {
   coffees: CoffeeType[]
   cart: CartItems[]
   payable: number
+  formAddress: FormAddressType
+  formPayment: FormPaymentType
   updateCart: (coffeeId: number, quantity: number) => void
   removeCoffeeCart: (coffeeId: number) => void
+  handleFormAddress: (event: any) => void
+  fetchAddress: () => void
+  handleFormPayment: (event: any) => void
+  FormSubmitDeliveryOrderData: () => void
 }
 
 export const CoffeesContext = createContext({} as CoffeesContextType)
@@ -36,6 +58,19 @@ export function CoffeesContextProvider({
   const [cart, setCart] = useState<CartItems[]>([])
   const [coffees, setCoffees] = useState<CoffeeType[]>([])
   const [payable, setPayable] = useState(0)
+  const [formAddress, setFormAddress] = useState({
+    cep: '',
+    street: '',
+    number: '',
+    complement: '',
+    district: '',
+    city: '',
+    state: '',
+  })
+
+  const [formPayment, setFormPayment] = useState<FormPaymentType>({
+    formOfPayment: 'credito',
+  })
 
   async function fetchCoffees() {
     const response = await api.get('coffees')
@@ -71,6 +106,46 @@ export function CoffeesContextProvider({
     setCart(updateCoffeeList)
   }
 
+  function handleFormAddress({ target }: any) {
+    setFormAddress({ ...formAddress, [target.name]: target.value })
+    if (target.name === 'cep') {
+      setFormAddress({
+        ...formAddress,
+        [target.name]: formatCurrentCep(target.value),
+      })
+    }
+    if (target.number === 'number') {
+      setFormAddress({
+        ...formAddress,
+        [target.number]: formatCurrentCep(target.value),
+      })
+    }
+  }
+
+  async function fetchAddress() {
+    const { data } = await viaCep.get(`${formAddress.cep}/json`)
+    setFormAddress({
+      ...formAddress,
+      city: data.localidade,
+      street: data.logradouro,
+      district: data.bairro,
+      state: data.uf,
+      complement: data.complemento,
+    })
+  }
+
+  function handleFormPayment(value: any) {
+    setFormPayment({ formOfPayment: value })
+  }
+
+  async function FormSubmitDeliveryOrderData() {
+    const deliveryOrderData = {
+      address: { ...formAddress },
+      ...formPayment,
+      order: { ...cart },
+    }
+    console.log(deliveryOrderData)
+  }
   useEffect(() => {
     fetchCoffees()
   }, [])
@@ -83,6 +158,12 @@ export function CoffeesContextProvider({
         payable,
         updateCart,
         removeCoffeeCart,
+        handleFormAddress,
+        formAddress,
+        fetchAddress,
+        handleFormPayment,
+        formPayment,
+        FormSubmitDeliveryOrderData,
       }}
     >
       {children}

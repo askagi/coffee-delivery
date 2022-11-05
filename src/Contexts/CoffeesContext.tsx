@@ -126,11 +126,11 @@ export function CoffeesContextProvider({
     const { data } = await viaCep.get(`${formAddress.cep}/json`)
     setFormAddress({
       ...formAddress,
-      city: data.localidade,
-      street: data.logradouro,
-      district: data.bairro,
-      state: data.uf,
-      complement: data.complemento,
+      city: data.localidade ? data.localidade : formAddress.city,
+      street: data.logradouro ? data.logradouro : formAddress.street,
+      district: data.bairro ? data.bairro : formAddress.district,
+      state: data.uf ? data.uf : formAddress.state,
+      complement: data.complemento ? data.complemento : formAddress.complement,
     })
   }
 

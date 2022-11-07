@@ -1,9 +1,9 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 export const ContainerSuccess = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 8rem;
+  margin-top: 10rem;
 `
 export const ContainerOrder = styled.div`
   width: 47%;
@@ -83,9 +83,34 @@ export const YellowCircle = styled(IconListContainer)`
 export const PurpleCircle = styled(IconListContainer)`
   background-color: ${(props) => props.theme.purple};
 `
-
+const illustrationAnimation = keyframes`
+0% {
+      top: 0px;
+      left: 0px;
+    }
+    
+    50% {
+      top: 10px;
+      left: 10px;
+    }
+    
+    100% {
+      top:0;
+      left: 0;
+      /* transform: scale(1.1) */
+    }
+`
 export const ContainerIllustration = styled.div`
   object-fit: cover;
   display: flex;
   align-items: flex-end;
+
+  img {
+    position: relative;
+
+    animation-name: ${illustrationAnimation};
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    /* animation-direction: alternate; */
+  }
 `

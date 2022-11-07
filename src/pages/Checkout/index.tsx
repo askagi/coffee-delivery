@@ -4,7 +4,13 @@ import { CoffeesContext } from '../../Contexts/CoffeesContext'
 import { AddressForm } from './Components/CardAddress'
 import { PaymentMethod } from './Components/CardOfPaymentMethod'
 import { ConfirmProduct } from './Components/ConfirmProduct'
-import { CheckoutContainer, FormsContainer, Header, Title } from './styles'
+import {
+  CheckoutContainer,
+  Container,
+  FormsContainer,
+  Header,
+  Title,
+} from './styles'
 
 export function Checkout() {
   const navegate = useNavigate()
@@ -16,7 +22,7 @@ export function Checkout() {
     navegate('/success')
   }
   return (
-    <div>
+    <Container>
       <Header>
         <Title>Complete seu pedido</Title>
         <Title>Cafés selecionados</Title>
@@ -30,6 +36,6 @@ export function Checkout() {
           <ConfirmProduct />
         </CheckoutContainer>
       </form>
-    </div>
+    </Container>
   )
 }

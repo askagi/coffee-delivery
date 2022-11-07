@@ -1,14 +1,8 @@
 import styled from 'styled-components'
 
-// export const PositionStatic = styled.div`
-//   /* margin: 12rem 0; */
-//   position: sticky;
-//   top: 0;
-//   z-index: 10;
-//   background-color: ${({ theme }) => theme.background};
-/* left: 10rem;
-right: 10rem; */
-// `
+export const PositionStatic = styled.div`
+  padding: 3.2rem 0;
+`
 export const NavbarContainer = styled.nav`
   display: flex;
   align-items: center;
@@ -18,6 +12,12 @@ export const NavbarContainer = styled.nav`
     outline: 0;
     box-shadow: none;
   }
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  left: 10rem;
+  right: 10rem;
+  background-color: ${({ theme }) => theme.background};
 `
 
 export const ItemsRight = styled.div`

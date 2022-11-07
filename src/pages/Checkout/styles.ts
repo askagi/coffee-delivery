@@ -1,5 +1,8 @@
 import styled from 'styled-components'
 
+export const Container = styled.div`
+  margin-top: 6.4rem;
+`
 export const Header = styled.header`
   display: flex;
   gap: 50.5rem;

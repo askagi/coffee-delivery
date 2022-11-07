@@ -10,6 +10,7 @@ import {
   List,
   ListGroup,
   PurpleCircle,
+  RightContent,
   Subtitle,
   Title,
   YellowCircle,
@@ -24,14 +25,10 @@ export function Header() {
       delay: 400,
       origin: 'left',
       distance: '30px',
-      reset: true,
     })
     sr.reveal('.itemRight', {
       duration: 3000,
       delay: 1000,
-      origin: 'right',
-      distance: '100px',
-      reset: true,
     })
   }, [])
   return (
@@ -75,9 +72,9 @@ export function Header() {
         </ListGroup>
       </LeftContent>
 
-      <div className="itemRight">
+      <RightContent className="itemRight">
         <img src={introImg} alt="Copo branco" />
-      </div>
+      </RightContent>
     </HeaderContainer>
   )
 }

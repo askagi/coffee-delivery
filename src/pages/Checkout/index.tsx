@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CoffeesContext } from '../../Contexts/CoffeesContext'
 import { AddressForm } from './Components/CardAddress'
@@ -21,6 +21,10 @@ export function Checkout() {
 
     navegate('/success')
   }
+
+  useEffect(() => {
+    window.scroll(0, 0)
+  }, [])
   return (
     <Container>
       <Header>
